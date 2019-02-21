@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 
-import screenStyles from "../styles/screenStyles";
+import feedStyles from "../styles/feedStyles";
 import { getMovies } from "../api";
 import MoviesList from "./MoviesList";
 import Spinner from "./Spinner";
 import Search from "./Search";
+import FindStuffButton from "./FindStuffButton";
+import Heading from "./Heading";
+import UpdatedInfo from "./UpdatedInfo";
+import NoMoviesInfo from "./NoMoviesInfo";
 
 export default class Feed extends React.Component {
   state = {
@@ -20,7 +24,7 @@ export default class Feed extends React.Component {
     isNoMoviesFound: false
   };
 
-  navigateToMovie = movieID => () => {
+  navigateToMovie = movieID => {
     this.props.navigation.navigate("Movie", {
       movie: this.state.movies.find(movie => movie.imdbID === movieID)
     });
@@ -71,7 +75,8 @@ export default class Feed extends React.Component {
         selectedYear,
         page: 1,
         isLoadedAll: false,
-        isNoMoviesFound: false
+        isNoMoviesFound: false,
+        isUpdated: false
       },
       this.fetchMovies
     );
@@ -94,36 +99,19 @@ export default class Feed extends React.Component {
       isLoadedAll
     } = this.state;
 
+    const isButtonVisible =
+      movies.length === 0 && !isLoading && !isNoMoviesFound;
+    const isSearchVisible =
+      movies.length !== 0 || isLoadedAll || isNoMoviesFound;
+
     return (
-      <View style={screenStyles.container}>
-        <View style={screenStyles.wrapper}>
-          <Text style={screenStyles.heading}>Movies Feed</Text>
-        </View>
-        {movies.length === 0 && !isNoMoviesFound && (
-          <View style={screenStyles.wrapper}>
-            <TouchableOpacity
-              onPress={this.fetchMovies}
-              style={screenStyles.button}
-            >
-              <Text style={screenStyles.buttonText}>Find stuff</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        {isUpdated && (
-          <Text style={screenStyles.updatedTitle}>
-            <Text>Last updated: </Text>
-            <Text>{lastUpdated}</Text>
-          </Text>
-        )}
+      <View style={feedStyles.container}>
+        <Heading />
+        {isButtonVisible && <FindStuffButton fetchMovies={this.fetchMovies} />}
+        {isUpdated && <UpdatedInfo lastUpdated={lastUpdated} />}
         {isLoading && <Spinner />}
-        {(movies.length !== 0 || isLoadedAll || isNoMoviesFound) && (
-          <Search onYearSelect={this.onYearSelect} />
-        )}
-        {isNoMoviesFound && (
-          <Text style={screenStyles.noMovies}>
-            Sorry, no movies were found! ;(
-          </Text>
-        )}
+        {isSearchVisible && <Search onYearSelect={this.onYearSelect} />}
+        {isNoMoviesFound && <NoMoviesInfo />}
         <MoviesList
           fetchMovies={this.fetchMovies}
           loadMore={this.loadMore}
@@ -132,8 +120,7 @@ export default class Feed extends React.Component {
           navigateToMovie={this.navigateToMovie}
           {...{
             movies,
-            isLoadedAll,
-            isNoMoviesFound
+            isLoadedAll
           }}
         />
       </View>

@@ -28,6 +28,18 @@ export default StyleSheet.create({
   },
   year: {
     color: "#868889",
-    alignSelf: "flex-start"
-  }
+    alignSelf: "flex-start",
+    marginBottom: 10
+  },
+  moviesWrapper: {
+    flex: 1,
+  },
+  noMovies: {
+    marginTop: 15,
+    marginBottom: 15,
+    alignSelf: "center",
+    color: "#3f6974",
+    fontSize: 16,
+    fontWeight: "600"
+  },
 });

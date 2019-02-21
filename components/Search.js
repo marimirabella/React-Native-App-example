@@ -3,12 +3,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import range from "lodash.range";
 import React from "react";
 
-import screenStyles from "../styles/screenStyles";
+import feedStyles from "../styles/feedStyles";
 
 export default class Search extends React.Component {
   showPicker = () => {
     const { onYearSelect } = this.props;
-    let data = range(2019, 1895, -1);
+    const data = range(2019, 1895, -1);
 
     Picker.init({
       pickerData: data,
@@ -20,9 +20,9 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <View style={screenStyles.searchWrapper}>
+      <View style={feedStyles.searchWrapper}>
         <TouchableOpacity onPress={this.showPicker}>
-          <Text style={screenStyles.search}>Select a Year</Text>
+          <Text style={feedStyles.search}>Select a Year</Text>
         </TouchableOpacity>
       </View>
     );

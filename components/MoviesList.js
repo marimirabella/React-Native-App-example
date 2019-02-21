@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, FlatList, View } from "react-native";
 
-import screenStyles from "../styles/screenStyles";
-import MovieThumbnail from "./MovieThumbnail";
+import moviesStyles from "../styles/moviesStyles";
+import MovieThumbnail from './MovieThumbnail';
 
 export default class MoviesList extends React.Component {
   renderMovie = ({ item }) => (
@@ -27,7 +27,7 @@ export default class MoviesList extends React.Component {
 
     return (
       <>
-        <View style={screenStyles.moviesWrapper}>
+        <View style={moviesStyles.moviesWrapper}>
           {movies.length !== 0 && (
             <FlatList
               data={movies}
@@ -42,7 +42,7 @@ export default class MoviesList extends React.Component {
           )}
         </View>
         {isLoadedAll && (
-          <Text style={screenStyles.noMovies}>No more movies...</Text>
+          <Text style={moviesStyles.noMovies}>No more movies...</Text>
         )}
       </>
     );

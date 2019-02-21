@@ -8,9 +8,12 @@ const api = axios.create({
   },
   timeout: 1000,
 });
-const fakeTimeout = 1000;
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export const getMovies = async (page, year) => {
+  await delay(1000);
+  
   const response = await api({
     params: {
       page,

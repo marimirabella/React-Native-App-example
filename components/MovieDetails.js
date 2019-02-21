@@ -1,25 +1,23 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 
-import movieStyles from "../styles/moviesStyles";
+import moviesStyles from "../styles/moviesStyles";
 
-export default class MovieDetails extends React.Component {
-  render() {
-    const { navigation } = this.props;
-    const movie = navigation.getParam("movie", {});
+const MovieDetails = ({ navigation }) => {
+  const movie = navigation.getParam("movie", {});
+  const { Title, Poster, Year } = movie;
 
-    const { Title, Poster, Year } = movie;
+  return (
+    <View style={moviesStyles.movieDetails}>
+      <Text style={moviesStyles.title}>{Title}</Text>
+      <Text style={moviesStyles.year}>Year: {Year}</Text>
+      <Image
+        style={moviesStyles.image}
+        source={{ uri: Poster }}
+        resizeMode="cover"
+      />
+    </View>
+  );
+};
 
-    return (
-      <View style={movieStyles.movieDetails}>
-        <Text style={movieStyles.title}>{Title}</Text>
-        <Text style={movieStyles.year}>Year: {Year}</Text>
-        <Image
-          style={movieStyles.image}
-          source={{ uri: Poster }}
-          resizeMode="cover"
-        />
-      </View>
-    );
-  }
-}
+export default MovieDetails;

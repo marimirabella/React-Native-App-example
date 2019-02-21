@@ -1,4 +1,3 @@
-import React from "react";
 import { AppRegistry } from "react-native";
 import {
   createStackNavigator,
@@ -7,7 +6,6 @@ import {
 } from "react-navigation";
 
 import { name as appName } from "./app.json";
-
 import Feed from "./components/Feed";
 import MediaScreen from "./components/MediaScreen";
 import MovieDetails from "./components/MovieDetails";
@@ -33,8 +31,8 @@ const TabNavigator = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: "lightblue",
-      inactiveTintColor: "gray"
+      activeTintColor: "#0066FF",
+      inactiveTintColor: "#666666"
     }
   }
 );

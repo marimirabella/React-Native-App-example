@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Animated } from "react-native";
 
-import screenStyles from "../styles/screenStyles";
+import feedStyles from "../styles/feedStyles";
 
 const spinnerUrl =
   "https://rodrigovallades.gallerycdn.vsassets.io/extensions/rodrigovallades/es7-react-js-snippets/1.9.3/1544731524156/Microsoft.VisualStudio.Services.Icons.Default";
@@ -20,7 +20,7 @@ export default class Spinner extends React.Component {
 
   render() {
     return (
-      <View style={screenStyles.spinner}>
+      <View style={feedStyles.spinner}>
         <Animated.Image
           source={{ uri: spinnerUrl }}
           style={{

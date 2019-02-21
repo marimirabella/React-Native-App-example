@@ -30,7 +30,7 @@ export default class MediaScreen extends React.Component {
     });
   };
 
-  renderMediaObject = () => {
+  get renderMediaObject() {
     const { uri, type } = this.state;
     const validUri = uri || placeholderUri;
     const isVideo = !type;
@@ -51,12 +51,12 @@ export default class MediaScreen extends React.Component {
     }
 
     return <Image style={mediaStyles.placeholder} source={{ uri: validUri }} />;
-  };
+  }
 
   render() {
     return (
       <View style={mediaStyles.container}>
-        {this.renderMediaObject()}
+        {this.renderMediaObject}
         <TouchableHighlight onPress={this.getMediaObjectFromGallery}>
           <Image
             source={{ uri: addPhotoSource }}

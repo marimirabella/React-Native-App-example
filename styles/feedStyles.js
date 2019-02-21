@@ -48,7 +48,7 @@ export default StyleSheet.create({
     fontSize: 13,
     marginBottom: 5,
     marginTop: 5,
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   searchWrapper: {
     alignSelf: "flex-start"
@@ -56,16 +56,5 @@ export default StyleSheet.create({
   search: {
     margin: 12,
     color: "#666666"
-  },
-  moviesWrapper: {
-    flex: 1,
-  },
-  noMovies: {
-    marginTop: 15,
-    marginBottom: 15,
-    alignSelf: "center",
-    color: "#3f6974",
-    fontSize: 16,
-    fontWeight: "600"
   },
 });
